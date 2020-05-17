@@ -1,5 +1,6 @@
-let filename = '.gitignore'
-if filereadable(filename)
+function! s:GitIgnore()
+  let filename = '.gitignore'
+  if filereadable(filename)
     let igstring = ''
     for oline in readfile(filename)
         let line = substitute(oline, '\s|\n|\r', '', "g")
@@ -11,4 +12,8 @@ if filereadable(filename)
     endfor
     let execstring = "set wildignore+=".substitute(igstring, '^,', '', "g")
     execute execstring
-endif
+  endif
+endfunction
+
+call s:GitIgnore()
+
